@@ -5,3 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello World"
+  view:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ls
+      - uses: actions/checkout@v4.2.2
+      -run: ls
