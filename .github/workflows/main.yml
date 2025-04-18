@@ -16,3 +16,17 @@ jobs:
       - run: echo "nom du workflow ${{ github.workflow }}"
       - run: echo "Architecture du runner ${{ runner.arch }}"
       - run: echo "Repertoir du runner ${{ env.HOME }}"
+  gradle:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout sources
+      uses: actions/checkout@v4
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: 17
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+    - name: Build with Gradle
+      run: ./gradlew build
