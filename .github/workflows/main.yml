@@ -5,9 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello World"
-  view:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: ls
       - uses: actions/checkout@v4.2.2
       - run: ls
+      - run: echo "Ce workflow a été trigger sur un évènement de type ${{ github.event_name }}"
