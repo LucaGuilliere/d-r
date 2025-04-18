@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus laoreet cursus. Quisque blandit enim mattis vehicula mollis."
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus laoreet cursus. Quisque blandit enim mattis vehicula mollis."/>
 
 
 
