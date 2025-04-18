@@ -28,4 +28,4 @@ jobs:
           release_notes: ""
           git_release_notes: true
           include_git_commit_id: false
-          notify: true
+          notify: true 
