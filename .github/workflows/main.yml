@@ -10,4 +10,4 @@ jobs:
     steps:
       - run: ls
       - uses: actions/checkout@v4.2.2
-      -run: ls
+      - run: ls
