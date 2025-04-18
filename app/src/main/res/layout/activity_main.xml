@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow"
+    android:orientation="vertical"
+    android:layout_weight="1">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:backgroundTint="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/paris"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="30sp"
+            android:textStyle="bold|italic"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Friday, 20 January"
+        android:textColor="@color/white"
+        android:background="@color/black"
+        android:layout_marginStart="120dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sunny"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="31°"
+        android:textSize="150dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lorem Ipsum"
+        android:textSize="20dp"
+        android:textAlignment="textStart"
+        android:layout_marginStart="10dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus laoreet cursus. Quisque blandit enim mattis vehicula mollis."
+
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        app:cardBackgroundColor="@color/black"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_weight="1">
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.25"
+            android:backgroundTint="@color/black"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.25"
+            android:backgroundTint="@color/black"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.25"
+            android:backgroundTint="@color/black"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="0.25"
+            android:backgroundTint="@color/black"/>
+
+    </LinearLayout>
+
+</LinearLayout>
