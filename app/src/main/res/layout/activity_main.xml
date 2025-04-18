@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,12 +14,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:orientation="horizontal">
-        <Button
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:backgroundTint="@color/black"
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/menu"
+            app:tint="@color/black"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/wind"
+            tools:ignore="MissingConstraints" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +40,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Friday, 20 January"
+        android:text="@string/friday_20_january"
         android:textColor="@color/yellow"
         android:background="@drawable/rounded_tf"
         android:layout_marginTop="20dp"
@@ -43,29 +49,29 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sunny"
-        android:textSize="25dp"
+        android:text="@string/sunny"
+        android:textSize="25sp"
         android:textStyle="bold"
         android:textAlignment="center"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:text="31°"
-        android:textSize="150dp"
+        android:text="@string/_26"
+        android:textSize="150sp"
         android:textAlignment="center"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lorem Ipsum"
-        android:textSize="20dp"
+        android:text="@string/lorem_ipsum"
+        android:textSize="20sp"
         android:textAlignment="textStart"
         android:layout_marginStart="10dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus laoreet cursus. Quisque blandit enim mattis vehicula mollis."/>
+        android:text="@string/lorem"/>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -76,6 +82,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:baselineAligned="false"
             android:orientation="horizontal"
             android:gravity="center"
             android:weightSum="3">
@@ -91,13 +98,13 @@
                     android:layout_height="36dp"
                     android:src="@drawable/air"
                     app:tint="@color/yellow"
-                    android:contentDescription="Wind" />
+                    android:contentDescription="@string/wind" />
                 <TextView
                     android:id="@+id/windTF"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="820 km/h"
+                    android:text="@string/_820_km_h"
                     android:textColor="@color/yellow"
                     android:textStyle="bold"
                     android:textSize="16sp"
@@ -105,7 +112,7 @@
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Wind"
+                    android:text="@string/wind"
                     android:textColor="@color/yellow"
                     android:textSize="14sp"
                     android:gravity="center" />
@@ -122,13 +129,13 @@
                     android:layout_height="36dp"
                     android:src="@drawable/rain"
                     app:tint="@color/yellow"
-                    android:contentDescription="Humidity" />
+                    android:contentDescription="@string/humidity" />
                 <TextView
                     android:id="@+id/humidityTF"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="98%"
+                    android:text="@string/_98"
                     android:textColor="@color/yellow"
                     android:textStyle="bold"
                     android:textSize="16sp"
@@ -136,7 +143,7 @@
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Humidity"
+                    android:text="@string/humidity"
                     android:textColor="@color/yellow"
                     android:textSize="14sp"
                     android:gravity="center" />
@@ -153,13 +160,13 @@
                     android:layout_height="36dp"
                     android:src="@drawable/eye"
                     app:tint="@color/yellow"
-                    android:contentDescription="Visibility" />
+                    android:contentDescription="@string/visibility" />
                 <TextView
                     android:id="@+id/visibilityTF"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="1.5 m"
+                    android:text="@string/_1_5_m"
                     android:textColor="@color/yellow"
                     android:textStyle="bold"
                     android:textSize="16sp"
@@ -167,7 +174,7 @@
                 <TextView
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Visibility"
+                    android:text="@string/visibility"
                     android:textColor="@color/yellow"
                     android:textSize="14sp"
                     android:gravity="center" />
@@ -177,29 +184,129 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:layout_weight="1">
-        <Button
-            android:layout_width="100dp"
+        <LinearLayout
+            android:layout_width="80dp"
             android:layout_height="100dp"
-            android:layout_weight="0.25"
-            android:backgroundTint="@color/black"/>
-        <Button
-            android:layout_width="100dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/card_weather"
+            android:layout_marginEnd="12dp"
+            android:padding="8dp">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/_26"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/rain"
+                app:tint="@color/black"
+                android:layout_marginBottom="4dp"
+                android:contentDescription="@string/rain"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_21_jan"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="80dp"
             android:layout_height="100dp"
-            android:layout_weight="0.25"
-            android:backgroundTint="@color/black"/>
-        <Button
-            android:layout_width="100dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/card_weather"
+            android:layout_marginEnd="12dp"
+            android:padding="8dp">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/_26"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/rain"
+                app:tint="@color/black"
+                android:layout_marginBottom="4dp"
+                android:contentDescription="@string/rain"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_21_jan"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="80dp"
             android:layout_height="100dp"
-            android:layout_weight="0.25"
-            android:backgroundTint="@color/black"/>
-        <Button
-            android:layout_width="100dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/card_weather"
+            android:layout_marginEnd="12dp"
+            android:padding="8dp">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/_26"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/rain"
+                app:tint="@color/black"
+                android:layout_marginBottom="4dp"
+                android:contentDescription="@string/rain"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_21_jan"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="80dp"
             android:layout_height="100dp"
-            android:layout_weight="0.25"
-            android:backgroundTint="@color/black"/>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/card_weather"
+            android:layout_marginEnd="12dp"
+            android:padding="8dp">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/_26"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/rain"
+                app:tint="@color/black"
+                android:layout_marginBottom="4dp"
+                android:contentDescription="@string/rain"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_21_jan"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
