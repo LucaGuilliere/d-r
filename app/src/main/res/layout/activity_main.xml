@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:orientation="horizontal">
-
         <ImageView
             android:layout_width="36dp"
             android:layout_height="36dp"
@@ -24,7 +23,6 @@
             android:layout_marginStart="10dp"
             android:contentDescription="@string/wind"
             tools:ignore="MissingConstraints" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +70,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="@string/lorem"/>
-
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="120dp"
@@ -181,20 +178,23 @@
             </LinearLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
     <LinearLayout
+        android:baselineAligned="false"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center">
         <LinearLayout
-            android:layout_width="80dp"
+            android:layout_width="0dp"
             android:layout_height="100dp"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/card_weather"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="8dp"
             android:padding="8dp">
             <TextView
                 android:layout_height="wrap_content"
@@ -219,12 +219,13 @@
                 android:textSize="14sp" />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="80dp"
+            android:layout_width="0dp"
             android:layout_height="100dp"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/card_weather"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="8dp"
             android:padding="8dp">
             <TextView
                 android:layout_height="wrap_content"
@@ -249,12 +250,13 @@
                 android:textSize="14sp" />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="80dp"
+            android:layout_width="0dp"
             android:layout_height="100dp"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/card_weather"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="8dp"
             android:padding="8dp">
             <TextView
                 android:layout_height="wrap_content"
@@ -279,12 +281,12 @@
                 android:textSize="14sp" />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="80dp"
+            android:layout_width="0dp"
             android:layout_height="100dp"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/card_weather"
-            android:layout_marginEnd="12dp"
             android:padding="8dp">
             <TextView
                 android:layout_height="wrap_content"
@@ -301,12 +303,12 @@
                 app:tint="@color/black"
                 android:layout_marginBottom="4dp"
                 android:contentDescription="@string/rain"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_21_jan"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_21_jan"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
