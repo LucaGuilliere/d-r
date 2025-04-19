@@ -2,7 +2,7 @@ name: BOB
 on: 
   push:
     branches:
-      - develop
+      - main
 jobs:
   gradle:
     runs-on: ubuntu-latest
