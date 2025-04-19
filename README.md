@@ -62,6 +62,6 @@ git clone https://github.com/tonpseudo/MyMeteoMockup.git
 
 ## 📝 Licence
 
-Ce projet est open source sous licence [MIT](LICENSE). 🌝
+Ce projet est open source sous licence [MIT](LICENSE).
 
 ---
