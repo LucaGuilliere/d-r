@@ -2,7 +2,7 @@ name: Prod workflow
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   android:
