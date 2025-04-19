@@ -8,6 +8,8 @@ import androidx.core.content.ContextCompat
 import android.Manifest
 import android.content.pm.PackageManager
 import android.util.Log
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.LocationServices
 import okhttp3.*
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var temperatureTF: TextView
     private lateinit var cityTF: TextView
     private lateinit var weatherTF: TextView
+    private lateinit var dateTF: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +37,11 @@ class MainActivity : AppCompatActivity() {
         temperatureTF = findViewById(R.id.temperatureTF)
         cityTF = findViewById(R.id.cityTF)
         weatherTF = findViewById(R.id.weatherTF)
+        dateTF = findViewById(R.id.dateTF)
+
+        val dateNow = java.text.SimpleDateFormat("EEEE, dd MMMM", java.util.Locale.getDefault())
+        val formattedDate = dateNow.format(java.util.Date())
+        dateTF.text = formattedDate.replaceFirstChar { it.uppercase() }
 
         requestLocationAndWeather()
     }
@@ -49,6 +57,7 @@ class MainActivity : AppCompatActivity() {
                     val lat = location.latitude
                     val lon = location.longitude
                     fetchWeather(lat, lon)
+                    fetchWeeklyForecast(lat, lon) // 👈 NE PAS OUBLIER CETTE LIGNE
                 }
             }
         } else {
@@ -59,6 +68,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
+
     private fun fetchWeather(lat: Double, lon: Double) {
         val client = OkHttpClient()
         val apiKey = "e434db3dc6c276133cd4235cc81db83f"
@@ -96,5 +106,79 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun fetchWeeklyForecast(lat: Double, lon: Double) {
+        val client = OkHttpClient()
+        val apiKey = "e434db3dc6c276133cd4235cc81db83f"
+        val url = "https://api.openweathermap.org/data/2.5/forecast?lat=$lat&lon=$lon&appid=$apiKey&units=metric"
+
+        val request = Request.Builder().url(url).build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("Forecast", "Erreur réseau forecast", e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val json = JSONObject(response.body?.string() ?: return)
+                val list = json.getJSONArray("list")
+
+                val forecastList = mutableListOf<ForecastDay>()
+
+                for (i in 0 until list.length() step 8) {
+                    val obj = list.getJSONObject(i)
+                    val main = obj.getJSONObject("main")
+                    val weather = obj.getJSONArray("weather").getJSONObject(0)
+                    val timestamp = obj.getLong("dt")
+
+                    val temp = main.getDouble("temp").roundToInt()
+                    val icon = weather.getString("icon")
+
+                    val sdf = java.text.SimpleDateFormat("dd MMM", java.util.Locale.getDefault())
+                    val dateStr = sdf.format(java.util.Date(timestamp * 1000))
+
+                    forecastList.add(ForecastDay(temp, icon, dateStr))
+                }
+
+                runOnUiThread {
+                    updateForecast(forecastList)
+                }
+            }
+        })
+    }
+
+    data class ForecastDay(
+        val temp: Int,
+        val iconCode: String,
+        val dateFormatted: String
+    )
+
+    private fun updateForecast(forecastList: List<ForecastDay>) {
+        val forecastContainer = findViewById<LinearLayout>(R.id.forecastContainer)
+        forecastContainer.removeAllViews()
+
+        for (forecast in forecastList.take(7)) {
+            val itemView = layoutInflater.inflate(R.layout.item_forecast, forecastContainer, false)
+
+            val tempText = itemView.findViewById<TextView>(R.id.tempText)
+            val iconView = itemView.findViewById<ImageView>(R.id.weatherIcon)
+            val dateText = itemView.findViewById<TextView>(R.id.dateText)
+
+            tempText.text = "${forecast.temp}°"
+            dateText.text = forecast.dateFormatted
+
+            val iconResId = when (forecast.iconCode) {
+                "01d", "01n" -> R.drawable.sun
+                "02d", "02n" -> R.drawable.sun_cloud
+                "09d", "10d" -> R.drawable.rain
+                "11d" -> R.drawable.thunder
+                "13d" -> R.drawable.snow
+                else -> R.drawable.cloud
+            }
+
+            iconView.setImageResource(iconResId)
+            forecastContainer.addView(itemView)
+        }
     }
 }
