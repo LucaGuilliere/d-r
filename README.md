@@ -22,7 +22,6 @@
 - **API Météo** : [OpenWeather](https://openweathermap.org/api)
 - **IA** : [Mistral API](https://console.mistral.ai) (alternative ChatGPT)
 - **HTTP** : OkHttp3
-- **Localisation** : Google Play Services (FusedLocationProvider)
 
 ---
 
