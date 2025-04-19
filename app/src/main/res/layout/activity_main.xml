@@ -65,8 +65,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clothing advice"
+        android:text="@string/clothingAdvice"
         android:textSize="20sp"
+        android:textColor="@color/black"
         android:textAlignment="textStart"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"/>
@@ -76,6 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:textColor="@color/black"
         android:text="@string/lorem"/>
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"

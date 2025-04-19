@@ -14,5 +14,7 @@
     <string name="humidity">Humidity</string>
     <string name="_98">98%</string>
     <string name="visibility">Visibility</string>
+
+    <string name="clothingAdvice">Clothing advice</string>
     <string name="_1_5_m">1.5 m</string>
 </resources>

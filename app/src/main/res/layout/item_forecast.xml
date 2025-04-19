@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="80dp"
     android:layout_height="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/card_weather"
@@ -11,7 +12,7 @@
         android:id="@+id/tempText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="26°"
+        android:text="@string/_26"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
@@ -22,14 +23,14 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/sun"
-        android:tint="@android:color/black"
+        app:tint="@android:color/black"
         android:layout_marginBottom="4dp" />
 
     <TextView
         android:id="@+id/dateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="21 Jan"
+        android:text="@string/_21_jan"
         android:textColor="@android:color/black"
         android:textSize="14sp" />
 </LinearLayout>
