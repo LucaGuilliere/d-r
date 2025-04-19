@@ -13,6 +13,9 @@ import android.widget.LinearLayout
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.LocationServices
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 import kotlin.math.roundToInt
@@ -25,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var cityTF: TextView
     private lateinit var weatherTF: TextView
     private lateinit var dateTF: TextView
+    private lateinit var clothingAdviceTF: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         cityTF = findViewById(R.id.cityTF)
         weatherTF = findViewById(R.id.weatherTF)
         dateTF = findViewById(R.id.dateTF)
+        clothingAdviceTF = findViewById(R.id.clothingAdviceTF)
 
         val dateNow = java.text.SimpleDateFormat("EEEE, dd MMMM", java.util.Locale.getDefault())
         val formattedDate = dateNow.format(java.util.Date())
@@ -57,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                     val lat = location.latitude
                     val lon = location.longitude
                     fetchWeather(lat, lon)
-                    fetchWeeklyForecast(lat, lon) // 👈 NE PAS OUBLIER CETTE LIGNE
+                    fetchWeeklyForecast(lat, lon)
                 }
             }
         } else {
@@ -103,6 +108,7 @@ class MainActivity : AppCompatActivity() {
                     temperatureTF.text = "$tempRounded°C"
                     cityTF.text = "$cityName"
                     weatherTF.text = "$weatherDescription"
+                    getClothingAdvice(tempRounded, weatherDescription ?: "", humidity, windKmH)
                 }
             }
         })
@@ -180,5 +186,79 @@ class MainActivity : AppCompatActivity() {
             iconView.setImageResource(iconResId)
             forecastContainer.addView(itemView)
         }
+    }
+    private fun getClothingAdvice(temperature: Int, weatherDescription: String, humidity: Int, windKmH: Int) {
+        val client = OkHttpClient()
+        val apiKey = "B0xvoMumhqeu0G1KXgu3rPckLOOvloy4"
+
+        val prompt = """
+                        Tu es un assistant météo stylé. Donne-moi un conseil vestimentaire court et clair en anglais basé sur ces données :
+                        - Température : $temperature°C
+                        - Ciel : $weatherDescription
+                        - Humidité : $humidity%
+                        - Vent : $windKmH km/h
+                        Le texte doit faire environ 2-3 lignes. Sois naturel, concis, et pertinent. N'utilise pas d'emojis.
+                    """.trimIndent()
+
+        val json = JSONObject().apply {
+            put("model", "mistral-small")
+            put("messages", JSONArray().apply {
+                put(JSONObject().apply {
+                    put("role", "user")
+                    put("content", prompt)
+                })
+            })
+            put("temperature", 0.7)
+            put("max_tokens", 100)
+        }
+
+        val body = json.toString().toRequestBody("application/json".toMediaTypeOrNull())
+
+        val request = Request.Builder()
+            .url("https://api.mistral.ai/v1/chat/completions")
+            .addHeader("Authorization", "Bearer $apiKey")
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("Mistral", "Erreur API", e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                val jsonStr = response.body?.string() ?: return
+                Log.d("Mistral_RAW_RESPONSE", jsonStr)
+
+                try {
+                    val obj = JSONObject(jsonStr)
+
+                    // 🔐 Log d'erreur si réponse ne contient pas "choices"
+                    if (!obj.has("choices")) {
+                        Log.e("Mistral", "Réponse sans champ 'choices' : $jsonStr")
+                        runOnUiThread {
+                            clothingAdviceTF.text = "Réponse invalide de Mistral."
+                        }
+                        return
+                    }
+
+                    // 🔁 Parsing normal
+                    val message = obj.getJSONArray("choices")
+                        .getJSONObject(0)
+                        .getJSONObject("message")
+                        .getString("content")
+
+                    runOnUiThread {
+                        clothingAdviceTF.text = message.trim()
+                    }
+                    Log.d("Mistral", message)
+
+                } catch (e: Exception) {
+                    Log.e("Mistral", "Erreur parsing JSON", e)
+                    runOnUiThread {
+                        clothingAdviceTF.text = "Erreur de parsing JSON."
+                    }
+                }
+            }
+        })
     }
 }
