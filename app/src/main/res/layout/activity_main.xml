@@ -24,6 +24,7 @@
             android:contentDescription="@string/wind"
             tools:ignore="MissingConstraints" />
         <TextView
+            android:id="@+id/cityTF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/paris"
@@ -45,6 +46,7 @@
         android:layout_gravity="center"
         android:padding="12dp" />
     <TextView
+        android:id="@+id/weatherTF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/sunny"
@@ -52,6 +54,7 @@
         android:textStyle="bold"
         android:textAlignment="center"/>
     <TextView
+        android:id="@+id/temperatureTF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
