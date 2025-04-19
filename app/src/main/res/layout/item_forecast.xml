@@ -1,0 +1,36 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="80dp"
+    android:layout_height="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/card_weather"
+    android:layout_marginEnd="12dp"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tempText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_26"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="4dp" />
+
+    <ImageView
+        android:id="@+id/weatherIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/sun"
+        app:tint="@android:color/black"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_21_jan"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+</LinearLayout>

@@ -2,27 +2,29 @@
 <LinearLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
     android:orientation="vertical"
     android:layout_weight="1">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:orientation="horizontal">
-
-        <Button
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:backgroundTint="@color/black"
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            android:src="@drawable/menu"
+            app:tint="@color/black"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/wind"
+            tools:ignore="MissingConstraints" />
         <TextView
+            android:id="@+id/cityTF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/paris"
@@ -32,88 +34,185 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:textSize="30sp"
-            android:textStyle="bold|italic"
-            />
-
+            android:textStyle="bold|italic" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/dateTF"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Friday, 20 January"
-        android:textColor="@color/white"
-        android:background="@color/black"
-        android:layout_marginStart="120dp"
-        android:layout_marginEnd="120dp"
+        android:text="@string/friday_20_january"
+        android:textColor="@color/yellow"
+        android:background="@drawable/rounded_tf"
         android:layout_marginTop="20dp"
-        android:textAlignment="center"/>
-
+        android:layout_gravity="center"
+        android:padding="12dp" />
     <TextView
+        android:id="@+id/weatherTF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sunny"
-        android:textSize="25dp"
+        android:text="@string/sunny"
+        android:textSize="25sp"
         android:textStyle="bold"
         android:textAlignment="center"/>
-
     <TextView
+        android:id="@+id/temperatureTF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="31°"
-        android:textSize="150dp"
+        android:textColor="@color/black"
+        android:text="@string/_26"
+        android:textSize="150sp"
         android:textAlignment="center"/>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lorem Ipsum"
-        android:textSize="20dp"
+        android:text="@string/clothingAdvice"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         android:textAlignment="textStart"
-        android:layout_marginStart="10dp"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
     <TextView
+        android:id="@+id/clothingAdviceTF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempus laoreet cursus. Quisque blandit enim mattis vehicula mollis."/>
-
-
-
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/black"
+        android:text="@string/lorem"/>
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="120dp"
+        android:layout_margin="30dp"
         app:cardBackgroundColor="@color/black"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"/>
-
-    <LinearLayout
+        app:cardCornerRadius="16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="3">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/air"
+                    app:tint="@color/yellow"
+                    android:contentDescription="@string/wind" />
+                <TextView
+                    android:id="@+id/windTF"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/_820_km_h"
+                    android:textColor="@color/yellow"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:gravity="center" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/wind"
+                    android:textColor="@color/yellow"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/rain"
+                    app:tint="@color/yellow"
+                    android:contentDescription="@string/humidity" />
+                <TextView
+                    android:id="@+id/humidityTF"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/_98"
+                    android:textColor="@color/yellow"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:gravity="center" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/humidity"
+                    android:textColor="@color/yellow"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp">
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/eye"
+                    app:tint="@color/yellow"
+                    android:contentDescription="@string/visibility" />
+                <TextView
+                    android:id="@+id/visibilityTF"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/_1_5_m"
+                    android:textColor="@color/yellow"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:gravity="center" />
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/visibility"
+                    android:textColor="@color/yellow"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+    <TextView
+        android:id="@+id/weeklyTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_weight="1">
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="0.25"
-            android:backgroundTint="@color/black"/>
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="0.25"
-            android:backgroundTint="@color/black"/>
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="0.25"
-            android:backgroundTint="@color/black"/>
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="0.25"
-            android:backgroundTint="@color/black"/>
+        android:layout_marginStart="10dp"
+        android:text="Weekly forecast"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="12dp" />
 
-    </LinearLayout>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:scrollbars="none"
+        android:clipToPadding="false"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp">
 
+        <LinearLayout
+            android:id="@+id/forecastContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
 </LinearLayout>
